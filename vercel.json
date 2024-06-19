@@ -1,0 +1,16 @@
+{
+  "github": {
+    "silent": true
+  },
+  "rewrites": [
+    {
+      "source": "/api/:path(.*)",
+      "destination": "/api/entry"
+    }
+  ],
+  "functions": {
+    "api/entry.go": {
+      "maxDuration": 60
+    }
+  }
+}
