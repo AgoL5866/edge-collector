@@ -1,3 +1,4 @@
-# template-go-vercel
+# edge-collector
 
 edge-collector
+
