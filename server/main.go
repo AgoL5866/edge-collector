@@ -25,8 +25,8 @@ func MonitorInit() error {
 		return err
 	}
 
-	if len(configs.App.ClickhouseDSN) > 0 {
-		db.InitClickHouse(configs.App.ClickhouseDSN)
+	if len(env.CLICKHOUSE_DSN) > 0 {
+		db.InitClickHouse(env.CLICKHOUSE_DSN)
 	}
 
 	return nil

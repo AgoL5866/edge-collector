@@ -19,10 +19,9 @@ var (
 )
 
 type AppConf struct {
-	DebugMode     bool   `yaml:"debugMode"`
-	ClickhouseDSN string `yaml:"clickhouseDSN"`
-	Chains        []Chain
-	Alerts        []Alert
+	DebugMode bool `yaml:"debugMode"`
+	Chains    []Chain
+	Alerts    []Alert
 }
 
 type Chain struct {

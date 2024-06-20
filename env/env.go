@@ -7,8 +7,9 @@ import (
 )
 
 var (
-	CONFIG_URL = ""
-	REGION     = ""
+	CONFIG_URL     = ""
+	REGION         = ""
+	CLICKHOUSE_DSN = ""
 )
 
 func Init() error {
@@ -16,6 +17,7 @@ func Init() error {
 
 	CONFIG_URL = os.Getenv("CONFIG_URL")
 	REGION = os.Getenv("REGION")
+	CLICKHOUSE_DSN = os.Getenv("CLICKHOUSE_DSN")
 
 	return nil
 }
