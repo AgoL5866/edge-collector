@@ -1,3 +1,5 @@
 vendor/
-
 .env
+.idea
+main
+block_height.yaml
