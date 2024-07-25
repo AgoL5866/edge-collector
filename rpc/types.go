@@ -15,6 +15,7 @@ type BlockHeaderInfo struct {
 	NodeAlias  string
 	Number     int64
 	Timestamp  time.Time
+	Delay      int64 // ms, block delay time when use websocket subscribe
 	Hash       string
 	ParentHash string
 	Reason     string //if have error, it maybe include error info

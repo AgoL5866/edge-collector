@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"strings"
 	"sync"
 	"time"
 
@@ -39,7 +40,7 @@ func (m *Monitor) collectChain(chain configs.Chain) {
 		go func(name, url string) {
 			defer wg.Done()
 			info := &rpc.BlockHeaderInfo{
-				Region: env.REGION, Chain: chain.Name, NodeAlias: name, ReqTime: reqTime, Timestamp: time.Unix(0, 0),
+				Region: env.REGION, Chain: chain.Name, NodeAlias: name, ReqTime: reqTime, Timestamp: time.Unix(0, 0), Delay: 0,
 			}
 			rpc := rpc.GetRpcProvider(chain.RpcType, url)
 
@@ -49,6 +50,9 @@ func (m *Monitor) collectChain(chain configs.Chain) {
 				log.Errorf("[monitor] get chain=%s node=%s block height: %s", info.Chain, info.NodeAlias, err)
 			}
 			info.Duration = time.Since(start).Milliseconds()
+			if strings.HasPrefix(url, "ws") {
+				info.Delay = time.Since(info.Timestamp).Milliseconds()
+			}
 
 			//log the info with error to database
 			lock.Lock()
