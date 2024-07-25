@@ -69,8 +69,8 @@ func (api *EthApi) OnceSubscribeNewHeads(h *BlockHeaderInfo) (err error) {
 }
 
 func NewEthApi(url string, host string, maxConn int64, timeout time.Duration) *EthApi {
-	httpCli := newHttpClient(int(maxConn), timeout)
-	rpcCli, err := rpc.DialHTTPWithClient(url, httpCli)
+	ctx, _ := context.WithTimeout(context.Background(), timeout)
+	rpcCli, err := rpc.DialContext(ctx, url)
 	if err != nil {
 		log.Println("new EthApi error: ", err)
 		return nil
